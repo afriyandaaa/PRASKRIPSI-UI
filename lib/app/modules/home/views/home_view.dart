@@ -17,8 +17,8 @@ class HomeView extends GetView<HomeController> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
+          itemCount: 10,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Container(
               padding: EdgeInsets.all(20),
