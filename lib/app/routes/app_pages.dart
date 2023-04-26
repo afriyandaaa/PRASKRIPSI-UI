@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add/bindings/add_binding.dart';
+import '../modules/add/views/add_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -23,6 +25,12 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.ADD,
+      page: () => AddView(),
+      binding: AddBinding(),
       transition: Transition.fadeIn,
     ),
   ];

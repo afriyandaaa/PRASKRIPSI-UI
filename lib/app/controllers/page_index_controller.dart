@@ -7,7 +7,8 @@ class PageIndexController extends GetxController {
   void gantiPage(int i) async {
     switch (i) {
       case 1:
-        print("home");
+        pageIndex.value = i;
+        Get.offAllNamed(Routes.ADD);
         break;
       case 2:
         pageIndex.value = i;
