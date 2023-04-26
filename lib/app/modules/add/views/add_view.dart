@@ -12,7 +12,7 @@ class AddView extends GetView<AddController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AddView'),
+        title: const Text('ADD'),
         centerTitle: true,
       ),
       body: const Center(
