@@ -10,9 +10,11 @@ class PageIndexController extends GetxController {
         print("home");
         break;
       case 2:
+        pageIndex.value = i;
         Get.offAllNamed(Routes.PROFILE);
         break;
       default:
+        pageIndex.value = i;
         Get.offAllNamed(Routes.HOME);
     }
   }
