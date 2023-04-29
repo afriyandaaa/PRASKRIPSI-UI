@@ -15,5 +15,4 @@ class ProfileController extends GetxController {
     Map<String, dynamic> data = jsonDecode(response.body);
     nama = data["nama"];
   }
-  
 }
