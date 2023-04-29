@@ -1,34 +1,9 @@
-import 'dart:convert';
-
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:praskripsi/app/routes/app_pages.dart';
-import '../../../models/krs_model.dart';
 import '../controllers/home_controller.dart';
-import '../../../controllers/page_index_controller.dart';
-import 'package:http/http.dart' as http;
 
 class HomeView extends GetView<HomeController> {
-  final pageC = Get.find<PageIndexController>();
-
-  String nim = "205410002";
-
-  // API
-  List<Kr> allKrs = [];
-
-  Future getData() async {
-    var response = await http.get(Uri.parse(
-        "https://krs-firebase-default-rtdb.firebaseio.com/krsmhs/-NTxKhA9cY2_h3NcV269/mahasiswa/$nim.json"));
-    List<dynamic> data =
-        (jsonDecode(response.body) as Map<String, dynamic>)["krs"];
-    for (var element in data) {
-      allKrs.add(
-        Kr.fromJson(element),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +12,7 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-          future: getData(),
+          future: controller.getData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -47,7 +22,7 @@ class HomeView extends GetView<HomeController> {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
-                  itemCount: allKrs.length,
+                  itemCount: controller.allKrs.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Container(
@@ -61,22 +36,24 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            allKrs[index].matakuliah.namaMatkul,
+                            controller.allKrs[index].matakuliah.namaMatkul,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(height: 10),
-                          Text("Hari: ${allKrs[index].jadwal.hari}"),
+                          Text("Hari: ${controller.allKrs[index].jadwal.hari}"),
                           SizedBox(height: 10),
-                          Text("Ruang: ${allKrs[index].ruang}"),
+                          Text("Ruang: ${controller.allKrs[index].ruang}"),
                           SizedBox(height: 10),
+                          // Text("Nama: ${controller.nama}"),
+                          // SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                  "${allKrs[index].jadwal.jamMulai} - ${allKrs[index].jadwal.jamSelesai}"),
+                                  "${controller.allKrs[index].jadwal.jamMulai} - ${controller.allKrs[index].jadwal.jamSelesai}"),
                             ],
                           ),
                         ],
@@ -94,8 +71,8 @@ class HomeView extends GetView<HomeController> {
           TabItem(icon: Icons.add, title: 'Add'),
           TabItem(icon: Icons.people, title: 'Profile'),
         ],
-        initialActiveIndex: pageC.pageIndex.value,
-        onTap: (int i) => pageC.gantiPage(i),
+        initialActiveIndex: controller.pageC.pageIndex.value,
+        onTap: (int i) => controller.pageC.gantiPage(i),
       ),
     );
   }

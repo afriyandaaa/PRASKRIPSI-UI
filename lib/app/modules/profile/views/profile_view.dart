@@ -2,10 +2,8 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
-import '../../../controllers/page_index_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  final pageC = Get.find<PageIndexController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
           ),
           SizedBox(height: 5),
           Text(
-            "205410056",
+            controller.nim,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
@@ -71,8 +69,8 @@ class ProfileView extends GetView<ProfileController> {
           TabItem(icon: Icons.add, title: 'Add'),
           TabItem(icon: Icons.people, title: 'Profile'),
         ],
-        initialActiveIndex: pageC.pageIndex.value,
-        onTap: (int i) => pageC.gantiPage(i),
+        initialActiveIndex: controller.pageC.pageIndex.value,
+        onTap: (int i) => controller.pageC.gantiPage(i),
       ),
     );
   }
