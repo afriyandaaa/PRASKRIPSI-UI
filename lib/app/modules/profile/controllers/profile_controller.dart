@@ -11,7 +11,7 @@ class ProfileController extends GetxController {
 
   Future<void> getData() async {
     var response = await http.get(Uri.parse(
-        "https://krs-firebase-default-rtdb.firebaseio.com/krsmhs/-NTxKhA9cY2_h3NcV269/mahasiswa/$nim.json"));
+        "https://jadwal-krs-default-rtdb.firebaseio.com/jadwal-krs/-NU7-kXXNygFwsRy68j3/mahasiswa/$nim.json"));
     Map<String, dynamic> data = jsonDecode(response.body);
     nama = data["nama"];
   }

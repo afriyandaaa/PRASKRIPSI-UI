@@ -36,7 +36,7 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.allKrs[index].matakuliah.namaMatkul,
+                            controller.allKrs[index].jadwal.namaMatkul,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ class HomeView extends GetView<HomeController> {
                           SizedBox(height: 10),
                           Text("Hari: ${controller.allKrs[index].jadwal.hari}"),
                           SizedBox(height: 10),
-                          Text("Ruang: ${controller.allKrs[index].ruang}"),
+                          Text("Ruang: ${controller.allKrs[index].jadwal.ruang}"),
                           SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
