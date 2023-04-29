@@ -12,14 +12,14 @@ import 'package:http/http.dart' as http;
 class HomeView extends GetView<HomeController> {
   final pageC = Get.find<PageIndexController>();
 
-  String nim = "205410002";
+  final String nim = "205410056";
 
   // API
   List<Kr> allKrs = [];
 
   Future getData() async {
     var response = await http.get(Uri.parse(
-        "https://krs-firebase-default-rtdb.firebaseio.com/krsmhs/-NTxKhA9cY2_h3NcV269/mahasiswa/$nim.json"));
+        "https://jadwal-krs-default-rtdb.firebaseio.com/jadwal-krs/-NU7-kXXNygFwsRy68j3/mahasiswa/$nim.json"));
     List<dynamic> data =
         (jsonDecode(response.body) as Map<String, dynamic>)["krs"];
     for (var element in data) {
@@ -60,17 +60,19 @@ class HomeView extends GetView<HomeController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // nama matkul
                           Text(
-                            allKrs[index].matakuliah.namaMatkul,
+                            allKrs[index].jadwal.namaMatkul,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(height: 10),
-                          Text("Hari: ${allKrs[index].jadwal.hari}"),
+                          // Hari
+                          Text(allKrs[index].jadwal.hari),
                           SizedBox(height: 10),
-                          Text("Ruang: ${allKrs[index].ruang}"),
+                          Text("Ruang: ${allKrs[index].jadwal.ruang}"),
                           SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
