@@ -13,27 +13,42 @@ class HomeView extends GetView<HomeController> {
   final pageC = Get.find<PageIndexController>();
 
   final String nim = "205410056";
-
   // API
   List<Kr> allKrs = [];
-
+  final List<JadwalKrs> allData = [];
   Future getData() async {
     var response = await http.get(Uri.parse(
         "https://jadwal-krs-default-rtdb.firebaseio.com/jadwal-krs/-NU7-kXXNygFwsRy68j3/mahasiswa/$nim.json"));
-    List<dynamic> data =
-        (jsonDecode(response.body) as Map<String, dynamic>)["krs"];
-    for (var element in data) {
-      allKrs.add(
-        Kr.fromJson(element),
-      );
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+    List<dynamic> dataKrs = data["krs"];
+    JadwalKrs jadwalKrs = JadwalKrs.fromJson(data);
+    for (var element in dataKrs) {
+      allKrs.add(Kr.fromJson(element));
     }
+
+    allData.add(jadwalKrs);
+    print(jadwalKrs.nama);
+
+    // List<dynamic> dataKrs =
+    //     (jsonDecode(response.body) as Map<String, dynamic>)["krs"];
+    // List<dynamic> dataMhs =
+    //     (jsonDecode(response.body) as Map<String, dynamic>)[""];
+    // for (var element in dataKrs) {
+    //   allKrs.add(
+    //     Kr.fromJson(element),
+    //   );
+    // }
+    // allData.add(
+    //     JadwalKrs.fromJson(dataMhs as Map<String, dynamic>));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HOME'),
+        title: Text('HOME: ${allData[0].nama}'),
+        // title: Text('HOME: ${allData[0].dosenPa}'),
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -73,6 +88,8 @@ class HomeView extends GetView<HomeController> {
                           Text(allKrs[index].jadwal.hari),
                           SizedBox(height: 10),
                           Text("Ruang: ${allKrs[index].jadwal.ruang}"),
+                          SizedBox(height: 10),
+                          // Text(allData["nama"].nama),
                           SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
