@@ -4,6 +4,8 @@ import '../modules/add/bindings/add_binding.dart';
 import '../modules/add/views/add_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 
@@ -32,6 +34,11 @@ class AppPages {
       page: () => AddView(),
       binding: AddBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }

@@ -6,23 +6,26 @@ import 'package:praskripsi/app/controllers/page_index_controller.dart';
 import '../../../models/krs_model.dart';
 
 class HomeController extends GetxController {
-   final pageC = Get.find<PageIndexController>();
+  final pageC = Get.find<PageIndexController>();
+  
 
   String nim = "205410002";
-  // API
+  String nama = "";
   List<Kr> allKrs = [];
 
-  Future getData() async {
+  Future<void> getData() async {
     var response = await http.get(Uri.parse(
         "https://krs-firebase-default-rtdb.firebaseio.com/krsmhs/-NTxKhA9cY2_h3NcV269/mahasiswa/$nim.json"));
-    List<dynamic> data =
-        (jsonDecode(response.body) as Map<String, dynamic>)["krs"];
-    for (var element in data) {
-      allKrs.add(
-        Kr.fromJson(element),
-      );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      List<dynamic> krs = data["krs"];
+      for (var element in krs) {
+        allKrs.add(Kr.fromJson(element));
+      }
+      nama = data["nama"];
+    } else {
+      Get.snackbar("Gagal mengambil data",
+          "Terjadi kesalahan saat mengambil data dari server");
     }
   }
-
-  
 }

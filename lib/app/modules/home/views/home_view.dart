@@ -47,8 +47,6 @@ class HomeView extends GetView<HomeController> {
                           SizedBox(height: 10),
                           Text("Ruang: ${controller.allKrs[index].ruang}"),
                           SizedBox(height: 10),
-                          // Text("Nama: ${controller.nama}"),
-                          // SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
