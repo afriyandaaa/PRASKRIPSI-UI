@@ -8,77 +8,97 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HOME'),
-        centerTitle: true,
-      ),
-      body: FutureBuilder(
-          future: controller.getData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LoadingAnimationWidget.staggeredDotsWave(
-                        color: Colors.blue, size: 50),
-                    const Text("Load data")
-                  ],
+      backgroundColor: Colors.blueGrey[50],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16),
+              child: Text(
+                'HOME',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[800],
                 ),
-              );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  itemCount: controller.allKrs.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: const EdgeInsets.all(20),
-                      margin: const EdgeInsets.only(bottom: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.grey[200],
-                      ),
+              ),
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: controller.getData(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            controller.allKrs[index].jadwal.namaMatkul,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text("Hari: ${controller.allKrs[index].jadwal.hari}"),
-                          SizedBox(height: 10),
-                          Text(
-                              "Ruang: ${controller.allKrs[index].jadwal.ruang}"),
-                          SizedBox(height: 10),
-                          Text("Sks: ${controller.allKrs[index].jadwal.sks}"),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                  "${controller.allKrs[index].jadwal.jamMulai} - ${controller.allKrs[index].jadwal.jamSelesai}"),
-                            ],
-                          ),
+                          LoadingAnimationWidget.staggeredDotsWave(
+                              color: Colors.blue, size: 50),
+                          const Text("Load data")
                         ],
                       ),
                     );
-                  },
-                ),
-              );
-            }
-          }),
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ListView.builder(
+                        itemCount: controller.allKrs.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            padding: const EdgeInsets.all(20),
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.grey[300],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.allKrs[index].jadwal.namaMatkul,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                    "Hari: ${controller.allKrs[index].jadwal.hari}"),
+                                SizedBox(height: 5),
+                                Text(
+                                    "Ruang: ${controller.allKrs[index].jadwal.ruang}"),
+                                SizedBox(height: 5),
+                                Text(
+                                    "Sks: ${controller.allKrs[index].jadwal.sks}"),
+                                SizedBox(height: 15),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                        "${controller.allKrs[index].jadwal.jamMulai} - ${controller.allKrs[index].jadwal.jamSelesai}"),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
+        backgroundColor: Colors.blue[800],
         items: [
-          const TabItem(icon: Icons.home, title: 'Home'),
-          const TabItem(icon: Icons.add, title: 'Add'),
-          const TabItem(icon: Icons.people, title: 'Profile'),
+          TabItem(icon: Icons.home, title: 'Home'),
+          TabItem(icon: Icons.add, title: 'Add'),
+          TabItem(icon: Icons.people, title: 'Profile'),
         ],
         initialActiveIndex: controller.pageC.pageIndex.value,
         onTap: (int i) => controller.pageC.gantiPage(i),

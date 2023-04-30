@@ -23,13 +23,14 @@ class AddView extends GetView<AddController> {
       ),
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
+        backgroundColor: Colors.blue[800],
         items: [
           TabItem(icon: Icons.home, title: 'Home'),
           TabItem(icon: Icons.add, title: 'Add'),
           TabItem(icon: Icons.people, title: 'Profile'),
         ],
-        initialActiveIndex: pageC.pageIndex.value,
-        onTap: (int i) => pageC.gantiPage(i),
+        initialActiveIndex: controller.pageC.pageIndex.value,
+        onTap: (int i) => controller.pageC.gantiPage(i),
       ),
     );
   }
