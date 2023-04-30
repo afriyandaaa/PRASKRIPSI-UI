@@ -32,7 +32,7 @@ class HomeController extends GetxController {
     for (var element in dataKrs) {
       allKrs.add(Kr.fromJson(element));
     }
-    // sks = data["sks"];
+
     allData.add(jadwalKrs);
   }
 }
