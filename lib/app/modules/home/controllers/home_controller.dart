@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   List<Kr> allKrs = [];
   final List<JadwalKrs> allData = [];
   String nim = "";
+  // String sks = "";
 
   @override
   void onInit() {
@@ -31,7 +32,7 @@ class HomeController extends GetxController {
     for (var element in dataKrs) {
       allKrs.add(Kr.fromJson(element));
     }
-
+    // sks = data["sks"];
     allData.add(jadwalKrs);
   }
 }

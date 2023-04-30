@@ -19,38 +19,73 @@ class ProfileView extends GetView<ProfileController> {
               padding: EdgeInsets.all(20),
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipOval(
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        child: Image.network(
-                          "https://picsum.photos/536/354",
-                          fit: BoxFit.cover,
+                    Row(
+                      children: [
+                        ClipOval(
+                          child: Container(
+                            width: 70,
+                            height: 70,
+                            child: Image.network(
+                              "https://picsum.photos/536/354",
+                              // "https://ui-avatars.com/api/?name=${controller.nama}",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
+                        SizedBox(width: 20),
+                        Text(
+                          "${controller.nama}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Text(
-                  "${controller.nama}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  "${controller.nim}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey[300],
+                  ),
+                  child: Table(
+                    columnWidths: {
+                      0: FlexColumnWidth(2),
+                      1: FlexColumnWidth(3)
+                    },
+                    children: [
+                      // TableRow(children: [
+                      //   Text("NAMA", style: TextStyle(fontSize: 20)),
+                      //   Text(": ${controller.nama}",
+                      //       style: TextStyle(fontSize: 20))
+                      // ]),
+                      TableRow(children: [
+                        Text("NIM", style: TextStyle(fontSize: 20)),
+                        Text(": ${controller.nim}",
+                            style: TextStyle(fontSize: 20))
+                      ]),
+                      TableRow(children: [
+                        Text("PR.STUDI", style: TextStyle(fontSize: 20)),
+                        Text(": ${controller.program_studi}",
+                            style: TextStyle(fontSize: 20))
+                      ]),
+                      TableRow(children: [
+                        Text("DOSEN_PA", style: TextStyle(fontSize: 20)),
+                        Text(": ${controller.dosen_pa}",
+                            style: TextStyle(fontSize: 20))
+                      ]),
+                    ],
                   ),
                 ),
                 SizedBox(height: 20),
                 ListTile(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(Routes.UPDATE_PROFILE),
                   leading: Icon(Icons.person),
                   title: Text("Update Profile"),
                 ),
@@ -61,7 +96,8 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 ListTile(
                   onTap: () {
-                    Get.offAllNamed(Routes.LOGIN);
+                    // Get.offAllNamed(Routes.LOGIN);
+                    print("Klik");
                   },
                   leading: Icon(Icons.logout),
                   title: Text("Logout"),
