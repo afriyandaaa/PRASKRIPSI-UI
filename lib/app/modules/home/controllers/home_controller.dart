@@ -31,7 +31,6 @@ class HomeController extends GetxController {
     for (var element in dataKrs) {
       allKrs.add(Kr.fromJson(element));
     }
-
     allData.add(jadwalKrs);
   }
 }

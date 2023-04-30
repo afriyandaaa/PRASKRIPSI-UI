@@ -6,7 +6,7 @@ import 'package:praskripsi/app/controllers/page_index_controller.dart';
 
 class ProfileController extends GetxController {
   final pageC = Get.find<PageIndexController>();
-  String nim = "205410002";
+  String nim = "185410198";
   String nama = "";
 
   Future<void> getData() async {
