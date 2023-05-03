@@ -13,7 +13,6 @@ class HomeController extends GetxController {
   List<Kr> allKrs = [];
   final List<JadwalKrs> allData = [];
   String nim = "";
-  // String sks = "";
 
   @override
   void onInit() {
