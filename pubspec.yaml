@@ -13,6 +13,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   shared_preferences: 2.1.0
   flutter_local_notifications: 14.0.0+1
+  intl: 0.18.1
   flutter: 
     sdk: flutter
 

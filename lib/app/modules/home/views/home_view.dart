@@ -2,6 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:praskripsi/app/utils/notification_manager.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -72,6 +73,18 @@ class HomeView extends GetView<HomeController> {
                                 Text(
                                     "Sks: ${controller.allKrs[index].jadwal.sks}"),
                                 SizedBox(height: 15),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    NotificationManager()
+                                        .simpleNotificationShow(
+                                      controller
+                                          .allKrs[index].jadwal.namaMatkul,
+                                      controller.allKrs[index].jadwal.jamMulai,
+                                      controller.allKrs[index].jadwal.ruang,
+                                    );
+                                  },
+                                  child: Text("Show Notification"),
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
